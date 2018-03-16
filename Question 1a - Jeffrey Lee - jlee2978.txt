@@ -1,0 +1,10 @@
+Mistakes:
+
+1. 
+-`CardProspector.OnMouseUpAsButton()' cannot override inherited member `Card.OnMouseUpAsButton()' because it is not marked virtual, abstract or override
+ in Card.cs
+-So, we need to change 'public void OnMouseUpAsButton(){' to 'public virtual void OnMouseUpAsButton(){'
+
+2.
+
+3.
