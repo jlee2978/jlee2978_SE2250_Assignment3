@@ -10,3 +10,4 @@ Mistakes:
 -So, we need to change 'private ScoreManager SM = new ScoreManager();' to 'private ScoreManager SM;'
 
 3.
+-There are only 13 possible card types, not 14, so in the MakeCards() method of Deck.cs, we have to change 'for (int i=0; i<14; i++) {' to 'for (int i=0; i<13; i++) {'
