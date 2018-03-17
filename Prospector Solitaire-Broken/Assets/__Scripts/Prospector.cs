@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class Prospector : MonoBehaviour {
 	static public Prospector    S;
-	private ScoreManager SM = new ScoreManager();
+    private ScoreManager SM;
 
-	[Header("Set in Inspector")]
+    [Header("Set in Inspector")]
 	public TextAsset            deckXML; 
 	public TextAsset              layoutXML;
 	public float                    xOffset = 3;

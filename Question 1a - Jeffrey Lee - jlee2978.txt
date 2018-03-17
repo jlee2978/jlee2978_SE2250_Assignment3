@@ -6,5 +6,7 @@ Mistakes:
 -So, we need to change 'public void OnMouseUpAsButton(){' to 'public virtual void OnMouseUpAsButton(){'
 
 2.
+-In Prospector.cs : 9, the original code was trying to create a MonoBehaviour using the 'new' keyword. Classes that inherit from MonoBehaviour, such as ScoreManager, cannot be instantiated with the 'new' keyword
+-So, we need to change 'private ScoreManager SM = new ScoreManager();' to 'private ScoreManager SM;'
 
 3.
