@@ -6,8 +6,9 @@ Mistakes:
 -So, we need to change 'public void OnMouseUpAsButton(){' to 'public virtual void OnMouseUpAsButton(){'
 
 2.
--In Prospector.cs : 9, the original code was trying to create a MonoBehaviour using the 'new' keyword. Classes that inherit from MonoBehaviour, such as ScoreManager, cannot be instantiated with the 'new' keyword
--So, we need to change 'private ScoreManager SM = new ScoreManager();' to 'private ScoreManager SM;'
+-There are only 13 possible card types, not 14
+-So in the MakeCards() method of Deck.cs, we have to change 'for (int i=0; i<14; i++) {' to 'for (int i=0; i<13; i++) {'
 
 3.
--There are only 13 possible card types, not 14, so in the MakeCards() method of Deck.cs, we have to change 'for (int i=0; i<14; i++) {' to 'for (int i=0; i<13; i++) {'
+-Many properties in ScoreManager.cs were missing a 'S.' in fron of them, such as score and chain throughout the script
+-Adding the 'S.' allows properties such as the score to be properly shown

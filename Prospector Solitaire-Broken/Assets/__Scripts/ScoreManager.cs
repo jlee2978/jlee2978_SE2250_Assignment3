@@ -36,7 +36,7 @@ public class ScoreManager : MonoBehaviour {                 // a
 			HIGH_SCORE = PlayerPrefs.GetInt("ProspectorHighScore");
 		}
 		// Add the score from last round, which will be >0 if it was a win
-		score += SCORE_FROM_PREV_ROUND;
+		S.score += SCORE_FROM_PREV_ROUND;
 		// And reset the SCORE_FROM_PREV_ROUND
 		SCORE_FROM_PREV_ROUND = 0;
 	}
@@ -54,14 +54,14 @@ public class ScoreManager : MonoBehaviour {                 // a
 		case eScoreEvent.draw:     // Drawing a card
 		case eScoreEvent.gameWin:  // Won the round
 		case eScoreEvent.gameLoss: // Lost the round
-			chain = 0;             // resets the score chain
-			score += scoreRun;     // add scoreRun to total score
-			scoreRun = 0;          // reset scoreRun
+			S.chain = 0;             // resets the score chain
+			S.score += S.scoreRun;     // add scoreRun to total score
+			S.scoreRun = 0;          // reset scoreRun
 			break;
 
 		case eScoreEvent.mine:    // Remove a mine card
-			chain++;              // increase the score chain
-			scoreRun += chain;    // add score for this card to run
+			S.chain++;              // increase the score chain
+			S.scoreRun += S.chain;    // add score for this card to run
 			break;
 		}
 
@@ -70,23 +70,23 @@ public class ScoreManager : MonoBehaviour {                 // a
 		case eScoreEvent.gameWin:
 			// If it's a win, add the score to the next round
 			// static fields are NOT reset by SceneManager.LoadScene()
-			SCORE_FROM_PREV_ROUND = score;
-			print ("You won this round! Round score: "+score);
+			SCORE_FROM_PREV_ROUND = S.score;
+			print ("You won this round! Round score: "+S.score);
 			break;
 
 		case eScoreEvent.gameLoss:
 			// If it's a loss, check against the high score
-			if (HIGH_SCORE <= score) {
-				print("You got the high score! High score: "+score);
-				HIGH_SCORE = score;
-				PlayerPrefs.SetInt("ProspectorHighScore", score);
+			if (HIGH_SCORE <= S.score) {
+				print("You got the high score! High score: "+S.score);
+				HIGH_SCORE = S.score;
+				PlayerPrefs.SetInt("ProspectorHighScore", S.score);
 			} else {
-				print ("Your final score for the game was: "+score);
+				print ("Your final score for the game was: "+S.score);
 			}
 			break;
 
 		default:
-			print ("score: "+score+" scoreRun:"+scoreRun+" chain:"+chain);
+			print ("score: "+S.score+" scoreRun:"+S.scoreRun+" chain:"+S.chain);
 			break;
 		}
 	}
