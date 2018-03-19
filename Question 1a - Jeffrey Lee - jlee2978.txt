@@ -12,3 +12,4 @@ Mistakes:
 3.
 -Many properties in ScoreManager.cs were missing a 'S.' in fron of them, such as score and chain throughout the script
 -Adding the 'S.' allows properties such as the score to be properly shown
+-Something similar occurred in Prospector.cs where I had to add "ScoreManager.S." in front of variables such as score

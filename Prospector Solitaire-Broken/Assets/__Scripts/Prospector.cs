@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Prospector : MonoBehaviour {
 	static public Prospector    S;
-    private ScoreManager SM = new ScoreManager();
+    //private ScoreManager SM = new ScoreManager();
 
     [Header("Set in Inspector")]
 	public TextAsset            deckXML; 
@@ -40,8 +40,8 @@ public class Prospector : MonoBehaviour {
 		S = this; // Set up a Singleton for Prospector
 		SetUpUITexts();
 
-		SM.score += ScoreManager.SCORE_FROM_PREV_ROUND;
-        ScoreManager.SCORE_FROM_PREV_ROUND = 0;
+		//ScoreManager.S.score += ScoreManager.SCORE_FROM_PREV_ROUND;
+        //ScoreManager.SCORE_FROM_PREV_ROUND = 0;
     }
 
 	void SetUpUITexts() {
@@ -300,7 +300,7 @@ public class Prospector : MonoBehaviour {
 			MoveToDiscard(target); // Moves the target to the discardPile
 			MoveToTarget(Draw());  // Moves the next drawn card to the target
 			UpdateDrawPile();     // Restacks the drawPile
-			SM.Event(eScoreEvent.draw);
+			ScoreManager.S.Event(eScoreEvent.draw);
 			FloatingScoreHandler(eScoreEvent.draw);
 			break;
 
@@ -321,9 +321,9 @@ public class Prospector : MonoBehaviour {
 			tableau.Remove(cd); // Remove it from the tableau List
 			MoveToTarget(cd);  // Make it the target card
 			SetTableauFaces(); // Update tableau card face-ups 
-			SM.Event(eScoreEvent.mine);
+            ScoreManager.S.Event(eScoreEvent.mine);
 			FloatingScoreHandler(eScoreEvent.mine);
-            print("Target card: " + cd.suit + cd.rank + " score: " + SM.score + " scoreRun: " + SM.scoreRun + " chain: " + SM.chain);
+            print("Target card: " + cd.suit + cd.rank + " score: " + ScoreManager.S.score + " scoreRun: " + ScoreManager.S.scoreRun + " chain: " + ScoreManager.S.chain);
             break; 
 		}
 		// Check to see whether the game is over or not
@@ -433,13 +433,13 @@ public class Prospector : MonoBehaviour {
             case eScoreEvent.draw: // Drawing a card
             case eScoreEvent.gameWin: // Won the round
             case eScoreEvent.gameLoss: // Lost the round
-                SM.chain = 0;         // resets the score chain
-                SM.score += SM.scoreRun; // add scoreRun to total score
-                SM.scoreRun = 0;      // reset scoreRun
+                ScoreManager.S.chain = 0;         // resets the score chain
+                ScoreManager.S.score += ScoreManager.S.scoreRun; // add scoreRun to total score
+                ScoreManager.S.scoreRun = 0;      // reset scoreRun
                 break;
             case eScoreEvent.mine: // Remove a mine card
-                SM.chain++;           // increase the score chain
-                SM.scoreRun += SM.chain; // add score for this card to run
+                ScoreManager.S.chain++;           // increase the score chain
+                ScoreManager.S.scoreRun += ScoreManager.S.chain; // add score for this card to run
                 break;
         }
 
@@ -449,26 +449,26 @@ public class Prospector : MonoBehaviour {
             case eScoreEvent.gameWin:
                 // If it's a win, add the score to the next round
                 // static fields are NOT reset by Application.LoadLevel()
-                ScoreManager.SCORE_FROM_PREV_ROUND = SM.score;
-                print("You won this round! Round score: " + SM.score);
+                ScoreManager.SCORE_FROM_PREV_ROUND = ScoreManager.S.score;
+                print("You won this round! Round score: " + ScoreManager.S.score);
                 break;
             case eScoreEvent.gameLoss:
                 // If it's a loss, check against the high score
-                if (ScoreManager.HIGH_SCORE <= SM.score)
+                if (ScoreManager.HIGH_SCORE <= ScoreManager.S.score)
                 {
-                    print("You got the high score! High score: " + SM.score);
-                    ScoreManager.HIGH_SCORE = SM.score;
-                    PlayerPrefs.SetInt("ProspectorHighScore", SM.score);
+                    print("You got the high score! High score: " + ScoreManager.S.score);
+                    ScoreManager.HIGH_SCORE = ScoreManager.S.score;
+                    PlayerPrefs.SetInt("ProspectorHighScore", ScoreManager.S.score);
                 }
                 else
                 {
-                    print("Your final score for the game was: " + SM.score);
+                    print("Your final score for the game was: " + ScoreManager.S.score);
                 }
                 break;
             default:
                 // Jeff debug
-                //print("score: " + SM.score + "  scoreRun:" + SM.scoreRun + "  chain:" + SM.chain);
-                print("SM.score: " + SM.score + "  SM.scoreRun:" + SM.scoreRun + "  SM.chain:" + SM.chain + ";   ScoreManager.score: " + ScoreManager.SCORE + "   ScoreManager.SCORE_RUN: " + ScoreManager.SCORE_RUN + "   ScoreManager.CHAIN: " + ScoreManager.CHAIN);
+                //print("score: " + ScoreManager.S.score + "  scoreRun:" + ScoreManager.S.scoreRun + "  chain:" + ScoreManager.S.chain);
+                print("ScoreManager.S.score: " + ScoreManager.S.score + "  ScoreManager.S.scoreRun:" + ScoreManager.S.scoreRun + "  ScoreManager.S.chain:" + ScoreManager.S.chain + ";   ScoreManager.score: " + ScoreManager.SCORE + "   ScoreManager.SCORE_RUN: " + ScoreManager.SCORE_RUN + "   ScoreManager.CHAIN: " + ScoreManager.CHAIN);
                 break;
         }
     }
