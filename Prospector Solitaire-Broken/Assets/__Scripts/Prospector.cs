@@ -320,7 +320,8 @@ public class Prospector : MonoBehaviour {
 			SetTableauFaces(); // Update tableau card face-ups 
 			SM.Event(eScoreEvent.mine);
 			FloatingScoreHandler(eScoreEvent.mine);
-			break; 
+            print("Target card: " + cd.suit + cd.rank + " score: " + SM.score + " scoreRun: " + SM.scoreRun + " chain: " + SM.chain);
+            break; 
 		}
 		// Check to see whether the game is over or not
 		CheckForGameOver();
@@ -364,6 +365,8 @@ public class Prospector : MonoBehaviour {
 	public bool AdjacentRank(CardProspector c0, CardProspector c1) {
 		// If either card is face-down, it's not adjacent.
 		if (!c0.faceUp || !c1.faceUp) return(false);
+
+        if (c0.color.ToString() == c1.color.ToString()) return false;
 
 		// If they are 1 apart, they are adjacent
 		if (Mathf.Abs(c0.rank - c1.rank) == 1) {
