@@ -111,7 +111,10 @@ public class Prospector : MonoBehaviour {
 		// Reload the scene in reloadDelay seconds
 		// This will give the score a moment to travel
 		Invoke ("ReloadLevel", reloadDelay);                                 // a
-		// SceneManager.LoadScene("__Prospector_Scene_0"); // Now commented out!
+                                                                             // SceneManager.LoadScene("__Prospector_Scene_0"); // Now commented out!
+
+        Application.OpenURL("http://twitter.com/intent/tweet" + "?text=" + WWW.EscapeURL("My score is: " + ScoreManager.S.score.ToString() + ". My high score is: " + ScoreManager.HIGH_SCORE.ToString() + "."));
+
 	} 
 
 	void Start () {
