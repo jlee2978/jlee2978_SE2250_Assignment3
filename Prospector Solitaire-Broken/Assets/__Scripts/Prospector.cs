@@ -466,7 +466,6 @@ public class Prospector : MonoBehaviour {
                 }
                 break;
             default:
-                // Jeff debug
                 //print("score: " + ScoreManager.S.score + "  scoreRun:" + ScoreManager.S.scoreRun + "  chain:" + ScoreManager.S.chain);
                 print("ScoreManager.S.score: " + ScoreManager.S.score + "  ScoreManager.S.scoreRun:" + ScoreManager.S.scoreRun + "  ScoreManager.S.chain:" + ScoreManager.S.chain + ";   ScoreManager.score: " + ScoreManager.SCORE + "   ScoreManager.SCORE_RUN: " + ScoreManager.SCORE_RUN + "   ScoreManager.CHAIN: " + ScoreManager.CHAIN);
                 break;

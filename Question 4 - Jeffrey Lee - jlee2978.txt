@@ -9,3 +9,5 @@ Limitations of Unity:
 -The only way to overcome this is to debug using an external resource such as Visual Studio
 
 3.
+-Complex 3D objects are difficult to make in Unity
+-We will have to use an external resource such as Inventor
