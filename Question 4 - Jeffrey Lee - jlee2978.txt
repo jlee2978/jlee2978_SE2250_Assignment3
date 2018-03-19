@@ -1,0 +1,11 @@
+Limitations of Unity:
+
+1.
+-There is no easy way to share on social media platforms such as Facebook, Twitter or Instagram
+-To overcome this, we have to manually write scripts to share it on these platforms
+
+2.
+-Unity does not have a debugger
+-The only way to overcome this is to debug using an external resource such as Visual Studio
+
+3.
